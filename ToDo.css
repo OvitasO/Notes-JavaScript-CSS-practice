@@ -1,0 +1,131 @@
+body{
+  background-color: black;
+}
+
+h1{
+  color: white;
+  font-family: Roboto, Arial;
+}
+
+p{
+  font-family: Roboto, Arial;
+}
+
+.Heading{
+  display: flex;
+  justify-content: center;
+}
+
+.addContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  margin-bottom: 40px;
+}
+
+.addContainer:hover{
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.AddTask{
+  color: white;
+  font-weight: 500;
+  display: flexbox;
+  width: 60px;
+  height: 39.5px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  font-weight: 500;
+  border: 1px solid rgb(255, 255, 255);
+  text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.159);
+  background-color: rgb(37, 37, 37);
+  cursor: pointer;
+  transition: width 0.15s;
+}
+
+.AddTask:hover{
+  width: 70px;
+}
+
+.taskInput{
+  font-size: 14px;
+  width: 170px;
+  height: 36px;
+  margin-right: -5px;
+  border: none;
+  background-color: rgb(51, 51, 51);
+  color:white;
+  padding-left: 10px;
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+  transition: width 0.3s;
+}
+
+.taskInput.notEmpty{
+  width: 339px;
+}
+
+.taskInput:hover{
+  width: 339px;
+  box-shadow: 0 0 4px rgb(255, 255, 255);
+}
+
+.taskInput:focus{
+  width: 339px;
+  outline:1px solid white;
+}
+
+.notesFlex{
+  display: flex;
+  justify-content: center;
+}
+
+.notesGrid{
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-gap: 40px;
+}
+
+.note{
+  max-height: none;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  border: none;
+  border-radius: 7px;
+  background-color: rgb(51, 51, 51);
+  color: whitesmoke;
+  overflow: hidden;
+  transition: box-shadow 0.05s;
+
+}
+
+.note:hover{
+  box-shadow: 0 0 4px white;
+  text-shadow: 0px 0px 1px white;
+}
+
+.deleteButton{
+  font-weight: 500;
+  display: flexbox;
+  width: 400px;
+  height: 30px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  font-weight: 500;
+  border: 1px transparent;
+  color: rgba(255, 255, 255, 0.668);
+  background-color: rgb(37, 37, 37);
+  cursor: pointer;
+  transition: height 0.15s;
+}
+
+.deleteButton:hover{
+  height: 40px;
+  border: 1px solid white;
+  text-shadow: 0px 0px 1px white;
+}
