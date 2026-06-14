@@ -1,5 +1,5 @@
 body{
-  background-color: black;
+  background-color: rgb(15, 15, 15);
 }
 
 h1{
@@ -16,16 +16,26 @@ p{
   justify-content: center;
 }
 
-.addContainer{
+.inputWrapper{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.addContainer{
+  display: inline-block;
   border-radius: 7px;
   margin-bottom: 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.681);
+}
+
+.addContainer:focus-within .AddTask{
+  border: 1px solid white;
+  transform: scale(1.03);
 }
 
 .addContainer:hover{
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px white;
 }
 
 .AddTask{
@@ -33,11 +43,11 @@ p{
   font-weight: 500;
   display: flexbox;
   width: 60px;
-  height: 39.5px;
+  height: 39px;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
   font-weight: 500;
-  border: 1px solid rgb(255, 255, 255);
+  border: transparent;
   text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.159);
   background-color: rgb(37, 37, 37);
   cursor: pointer;
@@ -68,7 +78,6 @@ p{
 
 .taskInput:hover{
   width: 339px;
-  box-shadow: 0 0 4px rgb(255, 255, 255);
 }
 
 .taskInput:focus{
