@@ -16,6 +16,31 @@ p{
   justify-content: center;
 }
 
+.emptyFlex{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.empty{
+  color: white;
+  font-family: Roboto, Arial;
+}
+
+.empty2{
+  color: rgb(160, 160, 160);
+  font-family: Roboto, Arial;
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+}
+
+.empty2:hover{
+  text-decoration: underline;
+}
+
 .inputWrapper{
   display: flex;
   justify-content: center;
@@ -95,6 +120,10 @@ p{
   align-items: start;
   grid-template-columns: 300px 300px 300px 300px;
   grid-gap: 40px;
+}
+
+.notesGrid.nothing{
+  display: none;
 }
 
 .noteContainer{

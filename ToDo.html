@@ -6,18 +6,23 @@
     <script src="Todo.js" defer></script>
   </head>
   <body>
-    <div class="Heading">
+    <header class="Heading">
     <h1>Note list</h1>
-    </div>
-    <div class="inputWrapper">
-      <div class="addContainer">
-        <input class="taskInput" id="InputElem" placeholder="type a note" maxlength="300">
-        <button class="AddTask" id="AddElem">Add</button>
+    </header>
+    <main>
+      <div class="inputWrapper">
+        <div class="addContainer">
+          <input class="taskInput" id="InputElem" placeholder="type a note" maxlength="300">
+          <button class="AddTask" id="AddElem">Add</button>
+        </div>
       </div>
-    </div>
-    <div class="notesFlex">
-    <p class="empty" id="emptyElem"></p>
-    <div id="notesDisplay" class="notesGrid"></div>
-    </div>
+      <div class="notesFlex">
+        <div class="emptyFlex">
+          <h1 class="empty" id="emptyElem"></h1>
+          <label for="InputElem" class="empty2" id="empty2Elem"></label>
+        </div>
+        <div id="notesDisplay" class="notesGrid"></div>
+      </div>
+    </main>
   </body>
 </html>

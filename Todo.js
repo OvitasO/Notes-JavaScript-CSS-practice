@@ -17,11 +17,19 @@ function checkInputEmpty() {
 function checkIfEmpty() {
   if (ToDo.length === 0) {
     document.getElementById('emptyElem')
-      .innerHTML = 'Looks like there is nothing to worry about';
+      .innerHTML = 'Nothing here yet';
+    document.getElementById('empty2Elem')
+      .innerHTML = 'Add your first note';
+    document.getElementById('notesDisplay')
+      .classList.add('nothing');
   }
   else {
     document.getElementById('emptyElem')
       .innerHTML = '';
+    document.getElementById('empty2Elem')
+      .innerHTML = '';
+    document.getElementById('notesDisplay')
+      .classList.remove('nothing');
   }}
 
 const AddBtnElem = document.getElementById('AddElem');
