@@ -65,13 +65,15 @@ function renderNotes() {
       <p class="note">
         ${ToDo[i]}
       </p>
-        <button class="deleteButton" title="Delete" onclick="
-          ToDo.splice(${i}, 1);
-          renderNotes();
-          checkIfEmpty();
-          ">
-          <img src="images/cross-icon.svg" class="deleteIcon">
-        </button>
+        <div class="delContainer">
+          <button class="deleteButton" title="Delete" onclick="
+            ToDo.splice(${i}, 1);
+            renderNotes();
+            checkIfEmpty();
+            ">
+            <img src="images/cross-icon.svg" class="deleteIcon">
+          </button>
+        </div>
     </div>`;
   }
   checkIfEmpty();
