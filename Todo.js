@@ -61,16 +61,18 @@ function renderNotes() {
   notesElem.innerHTML = '';
   for (let i = 0; i < ToDo.length; i++) {
     notesElem.innerHTML += `
+    <div class="noteContainer">
       <p class="note">
         ${ToDo[i]}
-        <button class="deleteButton" onclick="
-        ToDo.splice(${i}, 1);
-        renderNotes();
-        checkIfEmpty();
-        ">
-          Delete
+      </p>
+        <button class="deleteButton" title="Delete" onclick="
+          ToDo.splice(${i}, 1);
+          renderNotes();
+          checkIfEmpty();
+          ">
+          <img src="images/cross-icon.svg" class="deleteIcon">
         </button>
-      </p>`;
+    </div>`;
   }
   checkIfEmpty();
   localStorage.setItem('ToDoList', JSON.stringify(ToDo));

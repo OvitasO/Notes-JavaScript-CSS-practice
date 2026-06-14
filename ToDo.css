@@ -25,13 +25,8 @@ p{
 .addContainer{
   display: inline-block;
   border-radius: 7px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.681);
-}
-
-.addContainer:focus-within .AddTask{
-  border: 1px solid white;
-  transform: scale(1.03);
 }
 
 .addContainer:hover{
@@ -85,6 +80,11 @@ p{
   outline:1px solid white;
 }
 
+.taskInput:focus + .AddTask{
+  border: 1px solid white;
+  transform: scale(1.03);
+}
+
 .notesFlex{
   display: flex;
   justify-content: center;
@@ -97,50 +97,75 @@ p{
   grid-gap: 40px;
 }
 
-.note{
-  min-height: 100px;
+.noteContainer{
+  min-height: 50px;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* align-items: center; */
-  margin-top: 15px;
   border: none;
   border-radius: 7px;
   background-color: rgb(51, 51, 51);
-  color: rgb(161, 161, 161);
-  overflow-wrap: break-word;
-  /* overflow: hidden; */
-  padding: 10px 8px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.681);
+  color: rgb(161, 161, 161);
   transition: box-shadow 0.05s;
+  position: relative;
 }
 
-.note:hover{
+.note{
+  overflow-wrap: break-word;
+  padding: 10px 8px;
+  margin: 0;
+}
+
+.noteContainer:hover{
   box-shadow: 0 0 4px white;
   color: whitesmoke;
   text-shadow: 0px 0px 1px white;
 }
 
+.deleteIcon{
+  width: 20px;
+  height: 20px;
+}
+
 .deleteButton{
   font-weight: 500;
-  display: flexbox;
-  width: 300px;
-  height: 30px;
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
   font-weight: 500;
   border: 1px transparent;
   color: rgba(255, 255, 255, 0.668);
-  background-color: rgb(37, 37, 37);
+  background-color: rgb(45, 45, 45);
   cursor: pointer;
-  margin-bottom: -10px;
-  margin-left: -8px;
-  transition: height 0.15s;
+
+  opacity: 0;
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+  transition: height 0.15s,
+              transform 0.15s,
+              opacity 0.1s;
+}
+
+.noteContainer:hover .deleteButton{
+  transform: translateX(40px);
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.681);
+  opacity: 1;
 }
 
 .deleteButton:hover{
-  height: 40px;
-  border: 1px solid white;
-  text-shadow: 0px 0px 1px white;
+  background-color: rgba(180, 70, 70, 0.35);
+}
+
+.noteContainer:has(.deleteButton:hover){
+  box-shadow: 0 0 10px rgba(180, 70, 70, 0.35);
+}
+
+.noteContainer:has(.deleteButton:hover) .note{
+  color: rgb(230, 190, 190);
 }
