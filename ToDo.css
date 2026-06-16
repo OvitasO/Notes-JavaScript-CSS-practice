@@ -128,6 +128,7 @@ p{
 
 .noteContainer{
   min-height: 50px;
+  max-height: 150px;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
   display: flex;
   flex-direction: column;
@@ -142,9 +143,14 @@ p{
 }
 
 .note{
-  overflow-wrap: break-word;
-  padding: 10px 8px;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  padding: 10px 8px 10px 12px;
   margin: 0;
+}
+
+.noteContainer.true{
+  max-height: none;
 }
 
 .noteContainer:hover{

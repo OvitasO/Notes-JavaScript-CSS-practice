@@ -4,7 +4,11 @@ let ToDo = JSON.parse(localStorage.getItem('ToDoList'));
 if (ToDo === null) {
   ToDo = [];
 }
-
+//Sets all notes extended property to false
+for (let i = 0; i < ToDo.length; i++) {
+  ToDo[i].extended = false;
+}
+//Keeps input "active" if there is text inside
 function checkInputEmpty() {
   if (inputElem.value != '') {
     inputElem.classList.add('notEmpty');
@@ -14,6 +18,7 @@ function checkInputEmpty() {
   }
 }
 
+//Checking if there are any notes, if not displaying a "Nothing here" text
 function checkIfEmpty() {
   if (ToDo.length === 0) {
     document.getElementById('emptyElem')
@@ -40,15 +45,27 @@ let timeAddId;
 checkInputEmpty();
 renderNotes();
 //Catching events
-AddBtnElem.addEventListener('click', AddToDo);
+AddBtnElem.addEventListener('click', () => {
+  if (inputElem.value.length > 150) {AddToDo(true)}
+  else {AddToDo(false)}
+});
 inputElem.addEventListener('input', checkInputEmpty);
 inputElem.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {AddToDo();}
+  if (event.key === 'Enter') 
+    {if (inputElem.value.length > 150) {AddToDo(true)}
+    else {AddToDo(false)}}
 })
 //Adding a note to an array
-function AddToDo() {
-  if (inputElem.value !== '') {
-    ToDo.push(inputElem.value);
+function AddToDo(size) {
+  if (inputElem.value === '') {
+    console.log('Nothing to add');
+  }
+  else {
+    ToDo.push({
+      text: inputElem.value,
+      big: size,
+      extended: false
+    });
     localStorage.setItem('ToDoList', JSON.stringify(ToDo));
     console.log(ToDo);
     AddBtnElem.innerHTML = 'Added!';
@@ -57,33 +74,45 @@ function AddToDo() {
       AddBtnElem.innerHTML = 'Add';
     }, 1500);
   }
-  else {
-    console.log('Nothing to add');
-  }
+
   renderNotes();
   inputElem.value = '';
   checkInputEmpty();
 }
 
-function renderNotes() {
+//Displaying notes on the screen
+function renderNotes(isExtended = '') {
+  let html = '';
   notesElem.innerHTML = '';
   for (let i = 0; i < ToDo.length; i++) {
-    notesElem.innerHTML += `
-    <div class="noteContainer">
-      <p class="note">
-        ${ToDo[i]}
+//Checks if the note is big, and if it is, allows you to open it on click
+    let bigNote = '';
+    if (ToDo[i].big === true) {
+      bigNote = `onclick="openNote(${i}, ${ToDo[i].extended})"`;
+    }
+    html += `
+    <div class="noteContainer ${ToDo[i].extended}" id="note${i}">
+      <p class="note" ${bigNote}>
+        ${ToDo[i].text}
       </p>
-        <div class="delContainer">
-          <button class="deleteButton" title="Delete" onclick="
-            ToDo.splice(${i}, 1);
-            renderNotes();
-            checkIfEmpty();
-            ">
-            <img src="images/cross-icon.svg" class="deleteIcon">
-          </button>
-        </div>
+      <div class="delContainer">
+        <button class="deleteButton" title="Delete" onclick="
+          ToDo.splice(${i}, 1);
+          renderNotes();
+          checkIfEmpty();
+          ">
+          <img src="images/cross-icon.svg" class="deleteIcon">
+        </button>
+      </div>
     </div>`;
-  }
-  checkIfEmpty();
-  localStorage.setItem('ToDoList', JSON.stringify(ToDo));
+}
+notesElem.innerHTML = html;
+checkIfEmpty();
+localStorage.setItem('ToDoList', JSON.stringify(ToDo));
+}
+//Extends the note or closes it
+function openNote(notei, isExtended) {
+    ToDo[notei].extended = !ToDo[notei].extended;
+    console.log(`Extended: ${ToDo[notei].extended}`);
+    renderNotes('extended');
 }
