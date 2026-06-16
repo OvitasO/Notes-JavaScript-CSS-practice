@@ -88,15 +88,26 @@ function renderNotes(isExtended = '') {
 //Checks if the note is big, and if it is, allows you to open it on click
     let bigNoteJs = '';
     let bigNote = '';
+    let extendBtn = '';
     if (ToDo[i].big === true) {
-      bigNoteJs = `onclick="openNote(${i}, ${ToDo[i].extended})"`;
       bigNote = 'bigNote';
+      if (!ToDo[i].extended) {
+        extendBtn = `<button class="openCard" onclick="openNote(${i}, ${ToDo[i].extended})">
+                      open
+                    </button>`
+      }
+      else {
+        extendBtn = `<button class="closeCard" onclick="openNote(${i}, ${ToDo[i].extended})">
+                      close
+                    </button>`
+      }
     }
     html += `
     <div class="noteContainer ${bigNote} ${ToDo[i].extended}" id="note${i}">
-      <p class="note" ${bigNoteJs}>
+      <p class="note">
         ${ToDo[i].text}
       </p>
+      ${extendBtn}
       <div class="delContainer">
         <button class="deleteButton" title="Delete" onclick="
           ToDo.splice(${i}, 1);
