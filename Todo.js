@@ -86,13 +86,15 @@ function renderNotes(isExtended = '') {
   notesElem.innerHTML = '';
   for (let i = 0; i < ToDo.length; i++) {
 //Checks if the note is big, and if it is, allows you to open it on click
+    let bigNoteJs = '';
     let bigNote = '';
     if (ToDo[i].big === true) {
-      bigNote = `onclick="openNote(${i}, ${ToDo[i].extended})"`;
+      bigNoteJs = `onclick="openNote(${i}, ${ToDo[i].extended})"`;
+      bigNote = 'bigNote';
     }
     html += `
-    <div class="noteContainer ${ToDo[i].extended}" id="note${i}">
-      <p class="note" ${bigNote}>
+    <div class="noteContainer ${bigNote} ${ToDo[i].extended}" id="note${i}">
+      <p class="note" ${bigNoteJs}>
         ${ToDo[i].text}
       </p>
       <div class="delContainer">

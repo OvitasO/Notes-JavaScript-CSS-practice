@@ -149,7 +149,11 @@ p{
   margin: 0;
 }
 
-.noteContainer.true{
+.noteContainer.bigNote{
+  cursor: pointer;
+}
+
+.noteContainer.bigNote.true{
   max-height: none;
 }
 
