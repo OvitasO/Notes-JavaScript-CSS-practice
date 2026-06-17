@@ -149,11 +149,7 @@ p{
   margin: 0;
 }
 
-.noteContainer.bigNote{
-  cursor: pointer;
-}
-
-.noteContainer.bigNote.true{
+.noteContainer.extended{
   max-height: none;
 }
 
@@ -161,6 +157,56 @@ p{
   box-shadow: 0 0 4px white;
   color: whitesmoke;
   text-shadow: 0px 0px 1px white;
+}
+
+.showMoreContainer{
+  position: absolute;
+  bottom: -32px;
+  left: 100px;
+  width: 100px;
+  background-color: transparent;
+
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.openCard{
+  font-family: Roboto, Arial;
+  font-size: 17px;
+  cursor: pointer;
+  height: 32px;
+  padding: 1px 6px;
+  background-color: #333333;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  backdrop-filter: blur(1px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transition: transform 0.15s,
+              opacity 0.1s;
+}
+
+.openCard:hover{
+  text-shadow: 0px 0px 1px white;
+  background-color: #494949;
+}
+
+.noteContainer:hover .openCard{
+  opacity: 1;
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.681);
+  transform: translateY(42px);
+}
+
+.noteContainer:hover .showMoreContainer{
+  pointer-events: auto;
 }
 
 .deleteIcon{
@@ -195,8 +241,7 @@ p{
   cursor: pointer;
 
   opacity: 0;
-  transition: height 0.15s,
-              transform 0.15s,
+  transition: transform 0.15s,
               opacity 0.1s;
 }
 

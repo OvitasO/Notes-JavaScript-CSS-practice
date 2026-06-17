@@ -4,10 +4,15 @@ let ToDo = JSON.parse(localStorage.getItem('ToDoList'));
 if (ToDo === null) {
   ToDo = [];
 }
-//Sets all notes extended property to false
-for (let i = 0; i < ToDo.length; i++) {
-  ToDo[i].extended = false;
-}
+
+const AddBtnElem = document.getElementById('AddElem');
+const inputElem = document.getElementById('InputElem');
+const notesElem = document.getElementById('notesDisplay');
+let timeAddId;
+
+checkInputEmpty();
+renderNotes();
+
 //Keeps input "active" if there is text inside
 function checkInputEmpty() {
   if (inputElem.value != '') {
@@ -36,14 +41,6 @@ function checkIfEmpty() {
     document.getElementById('notesDisplay')
       .classList.remove('nothing');
   }}
-
-const AddBtnElem = document.getElementById('AddElem');
-const inputElem = document.getElementById('InputElem');
-const notesElem = document.getElementById('notesDisplay');
-let timeAddId;
-
-checkInputEmpty();
-renderNotes();
 //Catching events
 AddBtnElem.addEventListener('click', () => {
   if (inputElem.value.length > 150) {AddToDo(true)}
@@ -63,8 +60,7 @@ function AddToDo(size) {
   else {
     ToDo.push({
       text: inputElem.value,
-      big: size,
-      extended: false
+      big: size
     });
     localStorage.setItem('ToDoList', JSON.stringify(ToDo));
     console.log(ToDo);
@@ -81,29 +77,21 @@ function AddToDo(size) {
 }
 
 //Displaying notes on the screen
-function renderNotes(isExtended = '') {
+function renderNotes() {
   let html = '';
   notesElem.innerHTML = '';
   for (let i = 0; i < ToDo.length; i++) {
 //Checks if the note is big, and if it is, allows you to open it on click
-    let bigNoteJs = '';
-    let bigNote = '';
     let extendBtn = '';
     if (ToDo[i].big === true) {
-      bigNote = 'bigNote';
-      if (!ToDo[i].extended) {
-        extendBtn = `<button class="openCard" onclick="openNote(${i}, ${ToDo[i].extended})">
-                      open
-                    </button>`
-      }
-      else {
-        extendBtn = `<button class="closeCard" onclick="openNote(${i}, ${ToDo[i].extended})">
-                      close
-                    </button>`
-      }
+      extendBtn = `<div class="showMoreContainer">
+                    <button class="openCard" onclick="openNote(${i}, this)">
+                      Show more
+                    </button>
+                   </div>`
     }
     html += `
-    <div class="noteContainer ${bigNote} ${ToDo[i].extended}" id="note${i}">
+    <div class="noteContainer" id="note${i}">
       <p class="note">
         ${ToDo[i].text}
       </p>
@@ -124,8 +112,14 @@ checkIfEmpty();
 localStorage.setItem('ToDoList', JSON.stringify(ToDo));
 }
 //Extends the note or closes it
-function openNote(notei, isExtended) {
-    ToDo[notei].extended = !ToDo[notei].extended;
-    console.log(`Extended: ${ToDo[notei].extended}`);
-    renderNotes('extended');
+function openNote(notei, button) {
+  document.getElementById(`note${notei}`)
+    .classList.toggle('extended');
+
+  if (button.textContent.trim() === 'Show more') {
+    button.textContent = 'Show less';
+  }
+  else {
+    button.textContent = 'Show more';
+  }
 }
